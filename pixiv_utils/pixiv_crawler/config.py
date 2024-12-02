@@ -2,16 +2,19 @@ import dataclasses
 import datetime
 import pprint
 from typing import Dict, Tuple
-
+from . import __init__
 from .utils import printInfo
-
+#获取昨天的日期返回类型为Datetime.date
+def get_yesterday_date() -> datetime.date:
+    return datetime.date.today() - datetime.timedelta(days=1)
 
 @dataclasses.dataclass
 class RankingConfig:
     # Start date
-    start_date: datetime.date = datetime.date(2022, 8, 1)
+    # start_date: datetime.date = datetime.date(2024, 12, 2)
+    start_date: datetime.date = get_yesterday_date()
     # Date range: [start, start + range - 1]
-    range: int = 1
+    range: int = 2
     # Which ranking list
     ranking_modes: Tuple = (
         "daily",
@@ -73,9 +76,9 @@ class DownloadConfig:
     timeout: float = 4  # Timeout for requests
     retry_times: int = 10  # Retry times for requests
     fail_delay: float = 1  # Waiting time (s) after failure
-    store_path: str = "images"  # Image save path
+    store_path: str = "D:\\py大作业\\PixivCrawler\\output"  # Image save path
     with_tag: bool = True  # Whether to download tags to a separate json file
-    url_only: bool = False  # Only download artwork urls
+    url_only: bool = True  # Only download artwork urls
     num_threads: int = 12  # Number of parallel threads
     thread_delay: float = 1  # Waiting time (s) after thread start
 

@@ -13,7 +13,8 @@ from pixiv_utils.pixiv_crawler import (
     ranking_config,
     user_config,
 )
-
+def get_yesterday_date() -> datetime.date:
+    return datetime.date.today() - datetime.timedelta(days=1)
 
 def downloadRanking():
     """
@@ -24,14 +25,14 @@ def downloadRanking():
     Args:
         capacity (int): flow capacity, default is 1024MB
     """
-    user_config.user_id = ""
-    user_config.cookie = ""
-    download_config.with_tag = False
-    ranking_config.start_date = datetime.date(2024, 5, 1)
-    ranking_config.range = 2
-    ranking_config.mode = "weekly"
-    ranking_config.content_mode = "illust"
-    ranking_config.num_artwork = 50
+    # user_config.user_id = ""
+    # user_config.cookie = ""
+    # download_config.with_tag = False
+    # ranking_config.start_date = datetime.date(2024, 5, 1)
+    # ranking_config.range = 2
+    # ranking_config.mode = "weekly"
+    # ranking_config.content_mode = "illust"
+    # ranking_config.num_artwork = 50
 
     displayAllConfig()
     checkDir(download_config.store_path)
@@ -136,6 +137,6 @@ if __name__ == "__main__":
     # loadEnv()
 
     downloadRanking()
-    downloadBookmark()
-    downloadUser()
-    downloadKeyword()
+    # downloadBookmark()
+    # downloadUser()
+    # downloadKeyword()
